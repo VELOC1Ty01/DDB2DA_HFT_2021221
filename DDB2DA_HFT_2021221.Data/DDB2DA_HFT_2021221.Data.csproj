@@ -18,4 +18,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDB2DA_HFT_2021221.Models\DDB2DA_HFT_2021221.Models.csproj" />
+  </ItemGroup>
+
 </Project>

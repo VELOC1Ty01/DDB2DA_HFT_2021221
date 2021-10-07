@@ -4,4 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DDB2DA_HFT_2021221.Data\DDB2DA_HFT_2021221.Data.csproj" />
+    <ProjectReference Include="..\DDB2DA_HFT_2021221.Logic\DDB2DA_HFT_2021221.Logic.csproj" />
+    <ProjectReference Include="..\DDB2DA_HFT_2021221.Models\DDB2DA_HFT_2021221.Models.csproj" />
+    <ProjectReference Include="..\DDB2DA_HFT_2021221.Repository\DDB2DA_HFT_2021221.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
