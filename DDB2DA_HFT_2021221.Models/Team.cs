@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Models
 {
-    [Table("team")]
-    class Team
+    [Table("Team")]
+    public class Team
     {
 
         [Key]
@@ -19,6 +19,8 @@ namespace DDB2DA_HFT_2021221.Models
         [MaxLength(60)]
         [Required]
         public string Name { get; set; }
+
+        public double Points { get; set; }
 
         [NotMapped]
         public virtual ICollection<Driver> Drivers { get; set; }

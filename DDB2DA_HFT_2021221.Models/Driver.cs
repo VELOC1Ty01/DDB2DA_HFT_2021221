@@ -8,21 +8,36 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Models
 {
-    [Table("driver")]
-    class Driver
+    [Table("Driver")]
+    public class Driver
     {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [MaxLength(20)]
         [Required]
-        public string SurName { get; set; }
+        public string LastName { get; set; }
 
+        [MaxLength(20)]
         [Required]
         public string FirstName { get; set; }
 
-        [ForeignKey("Team")]
+        [MaxLength(3)]
+        [Required]
+        public string ShortName { get; set; }
+
+        [MaxLength(3)]
+        [Required]
+        public string Nationality { get; set; }
+
+        public double  Points { get; set; }
+
+        [NotMapped]
+        public virtual Team Team { get; set; }
+
+        [ForeignKey(nameof(Team))]
         public int TeamId { get; set; }
        
 
