@@ -63,14 +63,14 @@ namespace DDB2DA_HFT_2021221.Data
             Driver oco = new Driver() { Id = 31, ShortName = "OCO", FirstName = "Esteban", LastName = "Ocon", Points = 46, TeamId = alpine.Id, Nationality = "FRA" };
             Driver vet = new Driver() { Id = 5, ShortName = "VET", FirstName = "Sebastian", LastName = "Vettel", Points = 35, TeamId = astonmartin.Id, Nationality = "GER" };
             Driver str = new Driver() { Id = 18, ShortName = "STR", FirstName = "Lance", LastName = "Stroll", Points = 26, TeamId = astonmartin.Id, Nationality = "CAN" };
-            Driver tsu = new Driver() { Id = 22, ShortName = "tsu", FirstName = "Yuki", LastName = "Tsunoda", Points = 18, TeamId = alphatauri.Id, Nationality = "JPN" };
-            Driver rus = new Driver() { Id = 63, ShortName = "rus", FirstName = "George", LastName = "Russel", Points = 16, TeamId = williams.Id, Nationality = "GBR" };
-            Driver lat = new Driver() { Id = 6, ShortName = "lat", FirstName = "Nicholas", LastName = "Latifi", Points = 7, TeamId = williams.Id, Nationality = "CAN" };
-            Driver rai = new Driver() { Id = 7, ShortName = "rai", FirstName = "Kimi", LastName = "Räikkönen", Points = 6, TeamId = alfaromeo.Id, Nationality = "FIN" };
-            Driver gio = new Driver() { Id = 99, ShortName = "gio", FirstName = "Antonio", LastName = "Giovinazzi", Points = 1, TeamId = alfaromeo.Id, Nationality = "ITA" };
-            Driver msc = new Driver() { Id = 47, ShortName = "msc", FirstName = "Mick", LastName = "Schumacher", Points = 0, TeamId = haas.Id, Nationality = "GER" };
-            Driver kub = new Driver() { Id = 88, ShortName = "kub", FirstName = "Robert", LastName = "Kubica", Points = 0, TeamId = alfaromeo.Id, Nationality = "POL" };
-            Driver maz = new Driver() { Id = 21, ShortName = "maz", FirstName = "Nikita", LastName = "Mazepin", Points = 0, TeamId = haas.Id, Nationality = "RAF" };
+            Driver tsu = new Driver() { Id = 22, ShortName = "TSU", FirstName = "Yuki", LastName = "Tsunoda", Points = 18, TeamId = alphatauri.Id, Nationality = "JPN" };
+            Driver rus = new Driver() { Id = 63, ShortName = "RUS", FirstName = "George", LastName = "Russel", Points = 16, TeamId = williams.Id, Nationality = "GBR" };
+            Driver lat = new Driver() { Id = 6, ShortName = "LAT", FirstName = "Nicholas", LastName = "Latifi", Points = 7, TeamId = williams.Id, Nationality = "CAN" };
+            Driver rai = new Driver() { Id = 7, ShortName = "RAI", FirstName = "Kimi", LastName = "Räikkönen", Points = 6, TeamId = alfaromeo.Id, Nationality = "FIN" };
+            Driver gio = new Driver() { Id = 99, ShortName = "GIO", FirstName = "Antonio", LastName = "Giovinazzi", Points = 1, TeamId = alfaromeo.Id, Nationality = "ITA" };
+            Driver msc = new Driver() { Id = 47, ShortName = "MSC", FirstName = "Mick", LastName = "Schumacher", Points = 0, TeamId = haas.Id, Nationality = "GER" };
+            Driver kub = new Driver() { Id = 88, ShortName = "KUB", FirstName = "Robert", LastName = "Kubica", Points = 0, TeamId = alfaromeo.Id, Nationality = "POL" };
+            Driver maz = new Driver() { Id = 21, ShortName = "MAZ", FirstName = "Nikita", LastName = "Mazepin", Points = 0, TeamId = haas.Id, Nationality = "RAF" };
 
             modelBuilder.Entity<Team>().HasData(mercedes, redbull, mclaren, ferrari, alpine, alphatauri, astonmartin, williams, alfaromeo, haas);
             modelBuilder.Entity<Driver>().HasData(ver, ham, bot, nor, per, sai, lec, ric, gas, alo, oco, vet, str, tsu, rus, lat, rai, gio, msc, kub, maz);
