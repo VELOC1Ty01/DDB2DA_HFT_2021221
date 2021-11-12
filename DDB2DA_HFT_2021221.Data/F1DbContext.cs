@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Data
 {
-    class F1DbContext : DbContext
+    public class F1DbContext : DbContext
     {
+        public virtual DbSet<Driver> Drivers { get; set; }
+        public virtual DbSet<Team> Team { get; set; }
+        public virtual DbSet<GrandPrix> GrandPrix { get; set; }
+
 
         public F1DbContext()
         {
@@ -38,6 +42,7 @@ namespace DDB2DA_HFT_2021221.Data
 
 
 
+            #region DataSeed
 
             Team mercedes = new Team() { Id = 1, Name = "Mercedes", Points = 433.5 };
             Team redbull = new Team() { Id = 2, Name = "Red Bull Racing Honda", Points = 397.5 };
@@ -71,6 +76,8 @@ namespace DDB2DA_HFT_2021221.Data
             Driver msc = new Driver() { Id = 47, ShortName = "MSC", FirstName = "Mick", LastName = "Schumacher", Points = 0, TeamId = haas.Id, Nationality = "GER" };
             Driver kub = new Driver() { Id = 88, ShortName = "KUB", FirstName = "Robert", LastName = "Kubica", Points = 0, TeamId = alfaromeo.Id, Nationality = "POL" };
             Driver maz = new Driver() { Id = 21, ShortName = "MAZ", FirstName = "Nikita", LastName = "Mazepin", Points = 0, TeamId = haas.Id, Nationality = "RAF" };
+
+            #endregion
 
             modelBuilder.Entity<Team>().HasData(mercedes, redbull, mclaren, ferrari, alpine, alphatauri, astonmartin, williams, alfaromeo, haas);
             modelBuilder.Entity<Driver>().HasData(ver, ham, bot, nor, per, sai, lec, ric, gas, alo, oco, vet, str, tsu, rus, lat, rai, gio, msc, kub, maz);
