@@ -11,11 +11,11 @@ namespace DDB2DA_HFT_2021221.Models
     public class GrandPrix
     {
         [Key]
-        public int GpId { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(40)]
         [Required]
-        public int GpName { get; set; }
+        public int Name { get; set; }
 
         [Required]
         public string Track { get; set; }
@@ -28,7 +28,7 @@ namespace DDB2DA_HFT_2021221.Models
             Teams = new HashSet<Team>();
         }
 
-        public DateTime GpDate { get; set; }
+        public DateTime Date { get; set; }
 
     }
 }
