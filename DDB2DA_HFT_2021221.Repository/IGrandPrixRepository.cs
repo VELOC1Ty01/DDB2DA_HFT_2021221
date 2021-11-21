@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Repository
 {
-    interface IGrandPrixRepository
+    public interface IGrandPrixRepository
     {
         void Create(GrandPrix gp);
         GrandPrix ReadOne(int gpId);
