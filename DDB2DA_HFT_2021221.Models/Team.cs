@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Models
@@ -22,6 +23,7 @@ namespace DDB2DA_HFT_2021221.Models
 
         public double Points { get; set; }
 
+        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Driver> Drivers { get; set; }
 
