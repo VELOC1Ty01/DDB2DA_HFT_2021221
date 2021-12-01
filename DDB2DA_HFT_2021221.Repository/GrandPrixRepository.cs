@@ -41,7 +41,7 @@ namespace DDB2DA_HFT_2021221.Repository
 
             old.Name = gp.Name;
             old.Date = gp.Date;
-            old.Teams = gp.Teams;
+            old.TeamGPs = gp.TeamGPs;
             old.Track = gp.Track;
 
             context.SaveChanges();

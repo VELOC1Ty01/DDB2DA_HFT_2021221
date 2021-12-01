@@ -46,7 +46,7 @@ namespace DDB2DA_HFT_2021221.Repository
         {
             Team old = ReadOne(team.Id);
 
-            old.Drivers = team.Drivers;
+            old.TeamGPs = team.TeamGPs;
             old.Name = team.Name;
             old.Points = team.Points;
         }

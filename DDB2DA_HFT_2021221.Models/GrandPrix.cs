@@ -16,21 +16,23 @@ namespace DDB2DA_HFT_2021221.Models
 
         [MaxLength(40)]
         [Required]
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         public string Track { get; set; }
 
-        [NotMapped]
         [JsonIgnore]
-        public virtual ICollection<Team> Teams { get; set; }
+        [NotMapped]
+        public virtual ICollection<TeamGPs> TeamGPs { get; set; }
 
         public GrandPrix()
         {
-            Teams = new HashSet<Team>();
+            this.TeamGPs = new HashSet<TeamGPs>();
         }
 
         public DateTime Date { get; set; }
+
+
 
     }
 }

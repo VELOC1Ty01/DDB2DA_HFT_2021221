@@ -37,7 +37,6 @@ namespace DDB2DA_HFT_2021221.Models
         [NotMapped]
         public virtual Team Team { get; set; }
 
-        [ForeignKey("Team")]
         public int TeamId { get; set; }
        
 

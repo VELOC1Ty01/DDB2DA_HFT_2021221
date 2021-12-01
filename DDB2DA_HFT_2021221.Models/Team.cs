@@ -27,9 +27,15 @@ namespace DDB2DA_HFT_2021221.Models
         [NotMapped]
         public virtual ICollection<Driver> Drivers { get; set; }
 
+
+        [JsonIgnore]
+        [NotMapped]
+        public virtual ICollection<TeamGPs> TeamGPs { get; set; }
+
         public Team()
         {
-            Drivers = new HashSet<Driver>();
+            this.Drivers = new HashSet<Driver>();
+            this.TeamGPs = new HashSet<TeamGPs>();
         }
 
     }
