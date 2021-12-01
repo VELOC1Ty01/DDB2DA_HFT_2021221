@@ -40,6 +40,23 @@ namespace DDB2DA_HFT_2021221.Data
                 .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
+            modelBuilder.Entity<TeamGPs>(entity =>
+            {
+                entity.HasOne(x => x.gp)
+                .WithMany(y => y.TeamGPs)
+                .HasForeignKey(tg => tg.GpId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+                
+            });
+
+            modelBuilder.Entity<TeamGPs>(entity =>
+            {
+                entity.HasOne(x => x.team)
+                .WithMany(y => y.TeamGPs)
+                .HasForeignKey(tg => tg.TeamID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
 
 
             #region DataSeed
@@ -77,10 +94,23 @@ namespace DDB2DA_HFT_2021221.Data
             Driver kub = new Driver() { Id = 88, ShortName = "KUB", FirstName = "Robert", LastName = "Kubica", Points = 0, TeamId = alfaromeo.Id, Nationality = "POL" };
             Driver maz = new Driver() { Id = 21, ShortName = "MAZ", FirstName = "Nikita", LastName = "Mazepin", Points = 0, TeamId = haas.Id, Nationality = "RAF" };
 
+            GrandPrix bah = new GrandPrix() { Name = "Bahrain GP", Date = new DateTime(2021, 03, 28), Track = "Bahrain International Circuit" };
+            GrandPrix emil = new GrandPrix() { Name = "Emilia Romagna Grand Prix", Date = new DateTime(2021, 04, 18), Track = "Autodromo Enzo e Dino Ferrari" };
+            GrandPrix port = new GrandPrix() { Name = "Portugese Grand Prix", Date = new DateTime(2021, 05, 02), Track = "Algarve International Circuit" };
+            GrandPrix span = new GrandPrix() { Name = "Spanish GP", Date = new DateTime(2021, 05, 9), Track = "Circuit de Barcelona-Catalunya" };
+            GrandPrix mon = new GrandPrix() { Name = "Monaco GP", Date = new DateTime(2021, 05, 23), Track = "Circuit de Monaco"};
+            GrandPrix azer = new GrandPrix() { Name = "Azerbaijan GP", Date = new DateTime(2021, 06, 6), Track = "Baku City Circuit"};
+            GrandPrix fre = new GrandPrix() { Name = "Circuit Paul Ricard", Date = new DateTime(2021, 06, 20), Track = "Circuit Paul Ricard"};
+            GrandPrix ste = new GrandPrix() { Name = "Steiermark GP", Date = new DateTime(2021, 06, 27), Track = "Red Bull Ring"};
+            GrandPrix aus = new GrandPrix() { Name = "Austrian GP", Date = new DateTime(2021, 07, 04), Track = "Red Bull Ring"};
+            GrandPrix brt = new GrandPrix() { Name = "British GP", Date = new DateTime(2021, 07, 18), Track = "Silverstone Circuit"};
+            GrandPrix hun = new GrandPrix() { Name = "Hungarian GP", Date = new DateTime(2021, 08, 1), Track = "Hungaroring"};
+
             #endregion
 
             modelBuilder.Entity<Team>().HasData(mercedes, redbull, mclaren, ferrari, alpine, alphatauri, astonmartin, williams, alfaromeo, haas);
             modelBuilder.Entity<Driver>().HasData(ver, ham, bot, nor, per, sai, lec, ric, gas, alo, oco, vet, str, tsu, rus, lat, rai, gio, msc, kub, maz);
+            modelBuilder.Entity<GrandPrix>().HasData(bah, emil, port, span, mon, azer, fre, ste, aus, brt, hun);
 
         }
     }
