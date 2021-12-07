@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Models
 {
+    [Table("GrandPrix")]
     public class GrandPrix
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [MaxLength(40)]
