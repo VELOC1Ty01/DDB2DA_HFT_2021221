@@ -17,6 +17,19 @@ namespace DDB2DA_HFT_2021221.Repository
             this.context = context;
         }
 
+        public void AddPoints(int teamId, double newPoints)
+        {
+            Team team = ReadOne(teamId);
+
+            if (team != null)
+            {
+                team.Points += newPoints;
+                return;
+            }
+
+            throw new InvalidOperationException("Could not find team with the Id: " + teamId);
+        }
+
         public void Create(Team team)
         {
             context.Team.Add(team);

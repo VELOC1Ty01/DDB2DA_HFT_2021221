@@ -41,7 +41,9 @@ namespace DDB2DA_HFT_2021221.Repository
             Driver old = ReadOne(driver.Id);
 
             if (old == null)
-                return;
+            {
+                throw new InvalidOperationException("There is no Driver with \"" + driver.Id + "\" id.");
+            }
 
 
             old.FirstName = driver.FirstName;
@@ -60,5 +62,42 @@ namespace DDB2DA_HFT_2021221.Repository
             context.SaveChanges();
         }
 
+        public void ChangeId(int id, int newId)
+        {
+            Driver driver = ReadOne(id);
+
+            if (driver != null)
+            {
+                driver.Id = newId;
+                return;
+            }
+
+            throw new InvalidOperationException("There is no Driver with the Id: " + id);
+        }
+
+        public void AddPoints(int id, double points)
+        {
+            Driver driver = ReadOne(id);
+            if (driver != null)
+            {
+                driver.Points += points;
+                return;
+            }
+
+            throw new InvalidOperationException("There is no Driver with the Id: " + id);
+        }
+
+        public void ChangeTeam(int id, int newTeamId)
+        {
+            Driver driver = ReadOne(id);
+
+            if (driver != null)
+            {
+                driver.TeamId = newTeamId;
+                return;
+            }
+
+            throw new InvalidOperationException("There is no Driver with the Id: " + id);
+        }
     }
 }

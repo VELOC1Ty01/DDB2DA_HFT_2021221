@@ -52,5 +52,18 @@ namespace DDB2DA_HFT_2021221.Repository
             context.GrandPrix.Remove(ReadOne(gpId));
             context.SaveChanges();
         }
+
+        public void ChangeDate(int gpId, DateTime newDate)
+        {
+            GrandPrix gp = ReadOne(gpId);
+
+            if (gp != null)
+            {
+                gp.Date = newDate;
+                return;
+            }
+
+            throw new InvalidOperationException("Invalid GpId: " + gpId);
+        }
     }
 }
