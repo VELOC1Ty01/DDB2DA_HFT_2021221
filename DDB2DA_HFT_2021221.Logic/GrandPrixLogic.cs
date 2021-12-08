@@ -17,13 +17,29 @@ namespace DDB2DA_HFT_2021221.Logic
             this.repo = repo;
         }
 
+        public void ChangeDate(int gpId, DateTime newDate)
+        {
+            repo.ChangeDate(gpId, newDate);
+        }
+
         public void Create(GrandPrix gp)
         {
+            if (ReadOne(gp.Id) != null)
+            {
+                throw new InvalidOperationException
+                    ("Creating new item with Id: (" + gp.Id + ") is not possible: This item already exists.");
+            }
+
             repo.Create(gp);
         }
 
         public void Delete(int gpId)
         {
+            if (ReadOne(gpId) == null)
+            {
+                throw new NullReferenceException("GP with the Id: (" + gpId + ") cannot be found.");
+            }
+
             repo.Delete(gpId);
         }
 

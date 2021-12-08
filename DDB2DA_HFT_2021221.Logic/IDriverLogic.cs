@@ -11,5 +11,9 @@ namespace DDB2DA_HFT_2021221.Logic
         IQueryable<Driver> ReadAll();
         void Update(Driver driver);
         void Delete(int driverId);
+
+        void ChangeId(int id, int newId);
+        void AddPoints(int id, double points);
+        void ChangeTeam(int id, int newTeamId);
     }
 }

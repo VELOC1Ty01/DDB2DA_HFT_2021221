@@ -16,14 +16,31 @@ namespace DDB2DA_HFT_2021221.Logic
         {
             this.repo = repo;
         }
+
+        public void AddPoints(int teamId, double newPoints)
+        {
+            repo.AddPoints(teamId, newPoints);
+        }
+
         public void Create(Team team)
         {
+            if (ReadOne(team.Id) != null)
+            {
+                throw new InvalidOperationException
+                    ("Creating new item with Id: (" + team.Id + ") is not possible: This item already exists.");
+            }
+
             repo.Create(team);
         }
 
         public void Delete(int teamId)
         {
-           repo.Delete(teamId);
+            if (ReadOne(teamId) == null)
+            {
+                throw new NullReferenceException("Team with the Id: (" + teamId + ") cannot be found.");
+            }
+
+            repo.Delete(teamId);
         }
 
         public IQueryable<Team> ReadAll()

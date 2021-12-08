@@ -15,6 +15,11 @@ namespace DDB2DA_HFT_2021221.Repository
         void Update(Team team);
         void Delete(int teamId);
 
+        /// <summary>
+        /// Adds points to the existing ones.
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <param name="newPoints"></param>
         void AddPoints(int teamId, double newPoints);
     }
 }

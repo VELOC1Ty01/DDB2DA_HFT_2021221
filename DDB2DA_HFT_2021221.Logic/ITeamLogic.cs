@@ -14,5 +14,7 @@ namespace DDB2DA_HFT_2021221.Logic
         IQueryable<Team> ReadAll();
         void Update(Team team);
         void Delete(int teamId);
+
+        void AddPoints(int teamId, double newPoints);
     }
 }

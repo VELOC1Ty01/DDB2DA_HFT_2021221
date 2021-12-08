@@ -14,5 +14,7 @@ namespace DDB2DA_HFT_2021221.Logic
         IQueryable<GrandPrix> ReadAll();
         void Update(GrandPrix gp);
         void Delete(int gpId);
+
+        void ChangeDate(int gpId, DateTime newDate);
     }
 }
