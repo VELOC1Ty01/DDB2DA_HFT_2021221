@@ -25,11 +25,11 @@ namespace DDB2DA_HFT_2021221.Models
 
         [JsonIgnore]
         [NotMapped]
-        public virtual ICollection<TeamGPs> TeamGPs { get; set; }
+        public virtual ICollection<TeamGP> TeamGPs { get; set; }
 
         public GrandPrix()
         {
-            this.TeamGPs = new HashSet<TeamGPs>();
+            this.TeamGPs = new HashSet<TeamGP>();
         }
 
         public DateTime Date { get; set; }
