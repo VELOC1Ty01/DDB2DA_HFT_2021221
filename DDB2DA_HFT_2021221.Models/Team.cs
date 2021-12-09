@@ -38,5 +38,10 @@ namespace DDB2DA_HFT_2021221.Models
             this.TeamGPs = new HashSet<TeamGP>();
         }
 
+        public override string ToString()
+        {
+            return $"{Id} - {Name} - Points: {Points}";
+        }
+
     }
 }
