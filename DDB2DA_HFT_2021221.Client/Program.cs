@@ -1,4 +1,6 @@
-﻿using DDB2DA_HFT_2021221.Models;
+﻿using ConsoleTools;
+using DDB2DA_HFT_2021221.Data;
+using DDB2DA_HFT_2021221.Models;
 using System;
 using System.Linq;
 
@@ -11,22 +13,44 @@ namespace DDB2DA_HFT_2021221.Client
 
             //F1DbContext context = new F1DbContext();
 
-            //Team redbull = context.Team.Where(x => x.Drivers.Any(u => u.Id == 4)).FirstOrDefault();
+            //context.Team.Add(new Team { Name = "ads", Points = 2 });
 
-            //Console.WriteLine(redbull.Name);
+            //context.SaveChanges();
 
-            System.Threading.Thread.Sleep(5000);
+            //Console.WriteLine( context.Team.Where(x => x.Name == "ads").FirstOrDefault().Name);
 
-            try
-            {
-                RestService rest = new RestService("http://localhost:21304");
-            }
-            catch (ArgumentException e)
-            {
+            //Console.ReadLine();
 
-                Console.WriteLine(e.Message);
-            }
 
+
+            System.Threading.Thread.Sleep(3000);
+            RestService rest = new RestService("http://localhost:21304");
+
+
+            ConsoleMenu startMenu = new ConsoleMenu();
+            ConsoleMenu crudMenu = new ConsoleMenu();
+            ConsoleMenu queryMenu = new ConsoleMenu();
+
+            startMenu
+                .Add("Query methods", () => queryMenu.Show())
+                .Add("CRUD methods", () => crudMenu.Show())
+                .Add("Exit", () => ConsoleMenu.Close());
+
+            queryMenu
+                .Add("Get Teams Who Were Present In All Races", () => GetQuery<Team>(rest, "GetAllOutTeams"))
+                .Add("GetTeamsWhoSkippedGP", () => GetQuery<Team>(rest, "GetTeamsWhoSkippedGP"))
+                .Add("GetPointsFromDrivers", () => GetQuery<Driver>(rest, "GetPointsFromDrivers"))
+                .Add("GetDriversFromTeam", () => GetQuery<Driver>(rest, "GetDriversFromTeam"))
+                .Add("GetDriverRaces", () => GetQuery<GrandPrix>(rest, "GetDriverRaces"))
+                .Add("Back", () => startMenu.Show());
+
+            crudMenu
+                .Add("Test CRUD for Driver", () => DriverCRUDs(rest))
+                .Add("Test CRUD for Team", () => TeamCRUDs(rest))
+                .Add("Test CRUD for GrandPrix", () => GpCRUDs(rest))
+                .Add("Back", () => startMenu.Show());
+
+            startMenu.Show();
 
 
         }
@@ -51,7 +75,6 @@ namespace DDB2DA_HFT_2021221.Client
             {
                 FirstName = "Michael",
                 LastName = "Schumacher",
-                Id = 7,
                 Nationality = "GER",
                 Points = 0,
                 ShortName = "SCM",
@@ -61,17 +84,18 @@ namespace DDB2DA_HFT_2021221.Client
             rest.Post<Driver>(driver, "driver");
             Console.WriteLine("New driver registered.");
 
-            int driverId = rest.Get<Driver>("driver").Count - 1;
+            int driverId = 47;
             Driver temp = rest.Get<Driver>(driverId, "driver");
             rest.Put<Driver>(new Driver()
             {
                 FirstName = "Mick",
                 LastName = temp.LastName,
                 Nationality = temp.Nationality,
-                Id = temp.Id,
                 ShortName = temp.ShortName,
                 Points = 8,
-                TeamId = 10
+                TeamId = 10,
+                Id = 47
+
             }, "driver");
             Console.WriteLine("Driver is updated.");
 
@@ -80,7 +104,9 @@ namespace DDB2DA_HFT_2021221.Client
 
             Driver verstappen = rest.Get<Driver>(33, "driver");
             Console.WriteLine($"Driver with racing number 33: {verstappen.FirstName} {verstappen.LastName}");
+            Console.WriteLine();
 
+            Console.WriteLine("All drivers:");
             var drivers = rest.Get<Driver>("driver");
             foreach (Driver drvr in drivers)
             {
@@ -95,15 +121,15 @@ namespace DDB2DA_HFT_2021221.Client
 
             Team team = new Team()
             {
-                Name = "BraumGP",
-                Id = 11,
-                Points = 0,
+                Name = "Porsche",
+                Points = 6,
+                Id = 12
             };
 
             rest.Post<Team>(team, "team");
             Console.WriteLine("New team registered.");
 
-            int teamId = rest.Get<Team>("team").Count - 1;
+            int teamId = 5;
             Team temp = rest.Get<Team>(teamId, "team");
             rest.Put<Team>(new Team()
             {
@@ -134,7 +160,6 @@ namespace DDB2DA_HFT_2021221.Client
             GrandPrix gp = new GrandPrix()
             {
                 Name = "Magyar nagydij",
-                Id = 15,
                 Date = DateTime.Today,
                 Track = "Hungaroring"
             };
