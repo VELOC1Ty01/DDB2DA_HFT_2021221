@@ -48,7 +48,7 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<GrandPrix> GetDriverRaces()
         {
-            return logic .GetDriverRaces(33);
+            return logic.GetDriverRaces(33);
         }
 
     }
