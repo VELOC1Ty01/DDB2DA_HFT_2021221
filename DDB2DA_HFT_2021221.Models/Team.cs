@@ -23,12 +23,10 @@ namespace DDB2DA_HFT_2021221.Models
 
         public double Points { get; set; }
 
-        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Driver> Drivers { get; set; }
 
 
-        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<TeamGP> TeamGPs { get; set; }
 
