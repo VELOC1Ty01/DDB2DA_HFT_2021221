@@ -1,54 +1,57 @@
 using DDB2DA_HFT_2021221.Logic;
 using DDB2DA_HFT_2021221.Models;
 using DDB2DA_HFT_2021221.Repository;
+using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DDB2DA_HFT_2021221.Test
 {
     [TestFixture]
-    class DriverLogicTest
+    public class DriverLogicTest
     {
-        class FakeDriverRepository : IDriverRepository
-        {
-            public void Create(Driver driver)
-            {
-                throw new System.NotImplementedException();
-            }
+        Mock<IDriverRepository> mockedDriverRepository;
 
-            public void Delete(int driverId)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public IQueryable<Driver> ReadAll()
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public Driver ReadOne(int driverId)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void Update(Driver driver)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        IDriverLogic logic;
-
-        [SetUp]
-        public void Setup()
-        {
-            logic = new DriverLogic(new FakeDriverRepository());
-        }
 
         [Test]
-        public void Test1()
+        public void TestListByTeamId()
         {
-            Assert.Pass();
+            mockedDriverRepository = new Mock<IDriverRepository>(MockBehavior.Loose);
+            DriverLogic logic = new DriverLogic(mockedDriverRepository.Object);
+
+            List<Driver> drivers = new List<Driver>
+            {
+                new Driver() { Id = 33, ShortName = "VER", FirstName = "Max", LastName = "Verstappen", Points = 262.5, TeamId = 2, Nationality = "NED" },
+                new Driver() { Id = 44, ShortName = "HAM", FirstName = "Lewis", LastName = "Hamilton", Points = 256.5, TeamId = 1, Nationality = "GBR" },
+                new Driver() { Id = 77, ShortName = "BOT", FirstName = "Valtteri", LastName = "Bottas", Points = 177, TeamId = 4, Nationality = "FIN" },
+                new Driver() { Id = 4, ShortName = "NOR", FirstName = "Lando", LastName = "Norris", Points = 145, TeamId = 3, Nationality = "GBR" },
+                new Driver() { Id = 11, ShortName = "PER", FirstName = "Sergio", LastName = "Perez", Points = 135, TeamId = 2, Nationality = "MEX" }
+            };
+
+            List<Driver> expectedResult = new List<Driver> { drivers[0], drivers[4] };
+
+            mockedDriverRepository.Setup(x => x.ReadAll()).Returns(drivers.AsQueryable());
+
+            var result = logic.ReadAll().Where(x => x.TeamId == 2);
+
+            Assert.That(result, Is.EquivalentTo(expectedResult));
+            
+        }
+
+        Mock<ITeamRepository> mockedTeamRepository;
+
+        [Test]
+        public void TestTeamCreate()
+        {
+            mockedTeamRepository = new Mock<ITeamRepository>(MockBehavior.Loose);
+            TeamLogic logic = new TeamLogic(mockedTeamRepository.Object);
+
+            List<Team> expectedResult =new List<Team> { new Team { Id = 1, Name = "ASD", Points = 5 } };
+
+            mockedTeamRepository.Setup(x => x.Create(new Team { Id = 1, Name = "ASD", Points = 5  }));
+
+            Assert.That(logic.ReadAll(), Is.EqualTo(expectedResult));
         }
     }
 }
