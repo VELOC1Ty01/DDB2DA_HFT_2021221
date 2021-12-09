@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Logic
 {
-    public interface IQuery
+    public interface IQueryLogic
     {
         /// <summary>
         /// Gets a teams drivers with their points.

@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Logic
 {
-    public class Query : IQuery
+    public class QueryLogic : IQueryLogic
     {
         IDriverRepository driverRepository;
         ITeamRepository teamRepository;
         IGrandPrixRepository grandPrixRepository;
 
-        public Query(IDriverRepository driverRepository, ITeamRepository teamRepository,IGrandPrixRepository grandPrixRepository)
+        public QueryLogic(IDriverRepository driverRepository, ITeamRepository teamRepository,IGrandPrixRepository grandPrixRepository)
         {
             this.driverRepository = driverRepository;
             this.teamRepository = teamRepository;
@@ -55,7 +55,6 @@ namespace DDB2DA_HFT_2021221.Logic
 
         public IEnumerable<Team> GetTeamsWhoSkippedGP()
         {
-            int allGpCount = grandPrixRepository.ReadAll().Count();
 
             return teamRepository.ReadAll().Where(x => x.TeamGPs.Count() != grandPrixRepository.ReadAll().Count());
         }
