@@ -60,7 +60,7 @@ namespace DDB2DA_HFT_2021221.Client
         public T Get<T>(int id, string endpoint)
         {
             T item = default(T);
-            HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            HttpResponseMessage response = client.GetAsync($"{endpoint}/{id}").GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
                 item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
@@ -72,14 +72,14 @@ namespace DDB2DA_HFT_2021221.Client
         {
             HttpResponseMessage response =
                 client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
-
+            
             response.EnsureSuccessStatusCode();
         }
 
         public void Delete(int id, string endpoint)
         {
             HttpResponseMessage response =
-                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+                client.DeleteAsync($"{endpoint}/{id}").GetAwaiter().GetResult();
 
             response.EnsureSuccessStatusCode();
         }
