@@ -34,7 +34,10 @@ namespace DDB2DA_HFT_2021221.Models
 
         public DateTime Date { get; set; }
 
-
+        public override string ToString()
+        {
+            return $"{Id} - {Name} - Track:{Track} - Date: {Date}"; 
+        }
 
     }
 }
