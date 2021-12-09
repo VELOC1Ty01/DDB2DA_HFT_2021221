@@ -88,5 +88,85 @@ namespace DDB2DA_HFT_2021221.Client
             }
             Console.ReadLine();
         }
+
+        static void TeamCRUDs(RestService rest)
+        {
+            Console.WriteLine("Presenting CRUD methods on a new Team");
+
+            Team team = new Team()
+            {
+                Name = "BraumGP",
+                Id = 11,
+                Points = 0,
+            };
+
+            rest.Post<Team>(team, "team");
+            Console.WriteLine("New team registered.");
+
+            int teamId = rest.Get<Team>("team").Count - 1;
+            Team temp = rest.Get<Team>(teamId, "team");
+            rest.Put<Team>(new Team()
+            {
+                Id = temp.Id,
+                Points = 8,
+                Name = "BraumGP - updated"
+            }, "team");
+            Console.WriteLine("Team is updated.");
+
+            rest.Delete(teamId, "team");
+            Console.WriteLine("Team deleted");
+
+            Team haaas = rest.Get<Team>(10, "team");
+            Console.WriteLine($"Team with id 10: {haaas.Name}");
+
+            var teams = rest.Get<Team>("team");
+            foreach (Team tm in teams)
+            {
+                Console.WriteLine(tm.ToString());
+            }
+            Console.ReadLine();
+        }
+
+        static void GpCRUDs(RestService rest)
+        {
+            Console.WriteLine("Presenting CRUD methods on a new GrandPrix");
+
+            GrandPrix gp = new GrandPrix()
+            {
+                Name = "Magyar nagydij",
+                Id = 15,
+                Date = DateTime.Today,
+                Track = "Hungaroring"
+            };
+
+            rest.Post<GrandPrix>(gp, "grandprix");
+            Console.WriteLine("New GrandPrix registered.");
+
+            int gpId = rest.Get<GrandPrix>("grandprix").Count - 1;
+            GrandPrix temp = rest.Get<GrandPrix>(gpId, "grandprix");
+            rest.Put<GrandPrix>(new GrandPrix()
+            {
+                Id = temp.Id,
+                Track = "Kakucsring",
+                Name = temp.Name,
+                Date = temp.Date
+            }, "grandprix");
+            Console.WriteLine("GP is updated.");
+
+            rest.Delete(gpId, "grandprix");
+            Console.WriteLine("GP deleted");
+
+            GrandPrix idk = rest.Get<GrandPrix>(10, "grandprix");
+            Console.WriteLine($"GP with id 10: {idk.Name}");
+
+            var gps = rest.Get<GrandPrix>("grandprix");
+            foreach (GrandPrix gap in gps)
+            {
+                Console.WriteLine(gap.ToString());
+            }
+            Console.ReadLine();
+        }
+
+
     }
 }
