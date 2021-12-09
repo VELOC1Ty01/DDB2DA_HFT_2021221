@@ -19,12 +19,6 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
             this.logic = logic;
         }
 
-        [HttpGet("test")]
-        public string Test()
-        {
-            return "TESTEST";
-        }
-
         [HttpGet]
         public IEnumerable<Driver> GetAll()
         {
@@ -38,15 +32,28 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpPut]
-        public void UpdateOne([FromBody] Driver driver)
+        public void Put([FromBody] Driver driver)
         {
             logic.Update(driver);
         }
 
         [HttpDelete("{driverId}")]
-        public void DeleteOne([FromRoute] int driverId)
+        public void Delete([FromRoute] int driverId)
         {
             logic.Delete(driverId);
         }
+
+        [HttpPost("{driver}")]
+        public void Post([FromBody] Driver driver)
+        {
+            logic.Create(driver);
+        }
+        
+        [HttpGet("{id}")]
+        public Driver Get(int id)
+        {
+            return logic.ReadOne(id);
+        }
+
     }
 }

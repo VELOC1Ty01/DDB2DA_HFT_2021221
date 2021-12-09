@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class QueryController : ControllerBase
     {
