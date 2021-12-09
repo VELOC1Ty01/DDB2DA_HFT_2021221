@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]")] //team
     [ApiController]
     public class TeamController : ControllerBase
     {
@@ -26,22 +26,31 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
             return logic.ReadAll();
         }
 
-        [HttpPost]
-        public void CreateOne([FromBody] Team team)
+
+        [HttpDelete("{teamId}")]
+        public void Delete([FromRoute] int teamId)
+        {
+            logic.Delete(teamId);
+        }
+
+        [HttpPost("{team}")]
+        public void Post([FromBody]Team team)
         {
             logic.Create(team);
         }
 
+        [HttpGet("{id}")]
+        public Team Get(int id)
+        {
+            return logic.ReadOne(id);
+        }
+
         [HttpPut]
-        public void UpdateOne([FromBody] Team team)
+        public void Put([FromBody] Team team)
         {
             logic.Update(team);
         }
 
-        [HttpDelete("{teamId}")]
-        public void DeleteOne([FromRoute] int teamId)
-        {
-            logic.Delete(teamId);
-        }
+
     }
 }
