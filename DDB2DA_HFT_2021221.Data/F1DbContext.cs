@@ -13,6 +13,7 @@ namespace DDB2DA_HFT_2021221.Data
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<GrandPrix> GrandPrix { get; set; }
+        public virtual DbSet<TeamGP> TeamGPs { get; set; }
 
 
         public F1DbContext()

@@ -10,10 +10,10 @@ namespace DDB2DA_HFT_2021221.Logic
     public interface IQuery
     {
         /// <summary>
-        /// Calculates a team's points by the sum of their drivers points.
+        /// Gets a teams drivers with their points.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Team> GetTeamPointsFromDrivers(int teamId);
+        public IEnumerable<Driver> GetPointsFromDrivers(int teamId);
 
         /// <summary>
         /// Lists drivers of a team.
