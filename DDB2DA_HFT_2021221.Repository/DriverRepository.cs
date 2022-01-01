@@ -69,6 +69,7 @@ namespace DDB2DA_HFT_2021221.Repository
             if (driver != null)
             {
                 driver.Id = newId;
+                context.SaveChanges();
                 return;
             }
 
@@ -81,6 +82,7 @@ namespace DDB2DA_HFT_2021221.Repository
             if (driver != null)
             {
                 driver.Points += points;
+                context.SaveChanges();
                 return;
             }
 
@@ -94,6 +96,7 @@ namespace DDB2DA_HFT_2021221.Repository
             if (driver != null)
             {
                 driver.TeamId = newTeamId;
+                context.SaveChanges();
                 return;
             }
 
