@@ -52,7 +52,9 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         [HttpGet("{id}")]
         public Driver Get(int id)
         {
-            return logic.ReadOne(id);
+            Driver driver = logic.ReadOne(id);
+            ;
+            return driver;
         }
 
     }
