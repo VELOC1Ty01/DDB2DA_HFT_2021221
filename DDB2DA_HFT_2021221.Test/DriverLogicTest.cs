@@ -39,19 +39,39 @@ namespace DDB2DA_HFT_2021221.Test
             
         }
 
-        Mock<ITeamRepository> mockedTeamRepository;
 
         [Test]
         public void TestTeamCreate()
         {
+
+            Mock<IDriverRepository> driverRepository = new Mock<IDriverRepository>();
+            Driver newDriver = new Driver { FirstName = "asd", LastName = "asdasd", Id = 69, Nationality = "TST", Points = 0, ShortName = "asd", TeamId = 2 };
+
+            driverRepository.Setup(x => x.Create(newDriver));
+            DriverLogic logic = new DriverLogic(driverRepository.Object);
+            Assert.That(logic.ReadOne(69).LastName == "asdasd");
+
+            //mockedTeamRepository = new Mock<ITeamRepository>(MockBehavior.Loose);
+            //TeamLogic repo = new TeamLogic(mockedTeamRepository.Object);
+
+            //var expectedResult =new Team { Id = 1, Name = "ASD", Points = 5 };
+
+            //mockedTeamRepository.Setup(x => x.Create(new Team { Name = "ASD", Points = 5  }));
+
+            //Assert.That(repo.ReadOne(1), Is.EqualTo(expectedResult));
+        }
+
+        Mock<ITeamRepository> mockedTeamRepository;
+
+        [Test]
+        public void TestTeamReadAll()
+        {
             mockedTeamRepository = new Mock<ITeamRepository>(MockBehavior.Loose);
-            TeamLogic logic = new TeamLogic(mockedTeamRepository.Object);
+            TeamLogic repo = new TeamLogic(mockedTeamRepository.Object);
 
-            List<Team> expectedResult =new List<Team> { new Team { Id = 1, Name = "ASD", Points = 5 } };
-
-            mockedTeamRepository.Setup(x => x.Create(new Team { Id = 1, Name = "ASD", Points = 5  }));
-
-            Assert.That(logic.ReadAll(), Is.EqualTo(expectedResult));
+            IQueryable<Team> teams = repo.ReadAll();
+            ;
+            Assert.Pass();
         }
     }
 }
