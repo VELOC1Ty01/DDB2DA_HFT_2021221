@@ -63,13 +63,13 @@ namespace DDB2DA_HFT_2021221.Client
                 .Add("GetPointsFromDrivers", () => GetQuery<Driver>(rest, "GetPointsFromDrivers"))
                 .Add("GetDriversFromTeam", () => GetQuery<Driver>(rest, "GetDriversFromTeam"))
                 .Add("GetDriverRaces", () => GetQuery<GrandPrix>(rest, "GetDriverRaces"))
-                .Add("Back", () => startMenu.Show());
+                .Add("Back", ConsoleMenu.Close);
 
             crudMenu
                 .Add("Test CRUD for Driver", () => DriverCRUDs(rest))
                 .Add("Test CRUD for Team", () => TeamCRUDs(rest))
                 .Add("Test CRUD for GrandPrix", () => GpCRUDs(rest))
-                .Add("Back", () => startMenu.Show());
+                .Add("Back", ConsoleMenu.Close); ;
 
             startMenu.Show();
 
