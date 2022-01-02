@@ -27,7 +27,7 @@ namespace DDB2DA_HFT_2021221.Repository
         {
             return context
                 .Drivers
-                .FirstOrDefault(x => x.Id.Equals(driverId));
+                .FirstOrDefault(x => x.Id == driverId);
         }
 
         public IQueryable<Driver> ReadAll()
