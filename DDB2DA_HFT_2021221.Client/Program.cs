@@ -1,8 +1,5 @@
 ﻿using ConsoleTools;
-using DDB2DA_HFT_2021221.Data;
-using DDB2DA_HFT_2021221.Logic;
 using DDB2DA_HFT_2021221.Models;
-using DDB2DA_HFT_2021221.Repository;
 using System;
 using System.Linq;
 
@@ -199,17 +196,18 @@ namespace DDB2DA_HFT_2021221.Client
             }, "grandprix");
             Console.WriteLine("GP is updated.");
 
+            var gps = rest.Get<GrandPrix>("grandprix");
+            foreach (GrandPrix gap in gps)
+            {
+                Console.WriteLine(gap.ToString());
+            }
+
             rest.Delete(gpId, "grandprix");
             Console.WriteLine("GP deleted");
 
             GrandPrix idk = rest.Get<GrandPrix>(10, "grandprix");
             Console.WriteLine($"GP with id 10: {idk.Name}");
 
-            var gps = rest.Get<GrandPrix>("grandprix");
-            foreach (GrandPrix gap in gps)
-            {
-                Console.WriteLine(gap.ToString());
-            }
             Console.ReadLine();
         }
 
