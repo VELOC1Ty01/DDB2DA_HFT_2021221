@@ -33,10 +33,13 @@ namespace DDB2DA_HFT_2021221.Logic
 
         public IEnumerable<GrandPrix> GetDriverRaces(int driverId)
         {
-            return grandPrixRepository.ReadAll()
-                .Where(x => driverRepository
-                .ReadOne(driverId).Team
-                .TeamGPs == x.TeamGPs);
+            //return grandPrixRepository.ReadAll()
+            //    .Where(x => driverRepository
+            //    .ReadOne(driverId).Team
+            //    .TeamGPs.SequenceEqual(x.TeamGPs));
+            int teamId = driverRepository.ReadOne(driverId).TeamId;
+            return grandPrixRepository.ReadAll().Where(x => x.TeamGPs.Select(y => y.TeamID).Contains(teamId));
+            //return grandPrixRepository.ReadAll().
         }
 
         public IEnumerable<Driver> GetDriversFromTeam(int teamId)
@@ -48,7 +51,8 @@ namespace DDB2DA_HFT_2021221.Logic
         {
             return teamRepository.ReadOne(teamId)
                 .Drivers.Select(x => new Driver 
-                { FirstName = x.FirstName,
+                {   Id = x.Id,
+                    FirstName = x.FirstName,
                     LastName = x.LastName,
                     Points = x.Points });
         }

@@ -15,5 +15,12 @@ namespace DDB2DA_HFT_2021221.Models
 
         [NotMapped]
         public virtual GrandPrix GP { get; set; }
+
+        public bool Equals(TeamGP obj)
+        {
+            return obj.TeamID == this.TeamID &&
+                obj.GpId == this.GpId;
+            
+        }
     }
 }

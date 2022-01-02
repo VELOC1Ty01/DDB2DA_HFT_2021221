@@ -43,5 +43,10 @@ namespace DDB2DA_HFT_2021221.Models
         [ForeignKey(nameof(Team))]
         public int TeamId { get; set; }
 
+        public override string ToString()
+        {
+            return $"{Id} - {FirstName} {LastName} - {Points}";
+        }
+
     }
 }

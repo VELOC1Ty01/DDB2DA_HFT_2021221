@@ -78,9 +78,7 @@ namespace DDB2DA_HFT_2021221.Client
             var list = rest.Get<T>($"query/{query.ToLower()}");
 
             foreach (var item in list)
-            {
-                Console.WriteLine(item.ToString());
-            }
+                  Console.WriteLine(item.ToString());
 
             Console.ReadLine();
         }
