@@ -31,12 +31,6 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
             logic.Create(gp);
         }
 
-        [HttpPut]
-        public void UpdateOne([FromBody] GrandPrix gp)
-        {
-            logic.Update(gp);
-        }
-
         [HttpDelete("{gpId}")]
         public void Delete([FromRoute] int gpId)
         {
