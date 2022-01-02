@@ -29,7 +29,7 @@ namespace DDB2DA_HFT_2021221.Endpoint
         {
             services.AddControllers();
 
-            services.AddSingleton<F1DbContext, F1DbContext>();
+ 
 
             services.AddSingleton<IDriverLogic, DriverLogic>();
             services.AddSingleton<IDriverRepository, DriverRepository>();
@@ -41,6 +41,8 @@ namespace DDB2DA_HFT_2021221.Endpoint
             services.AddSingleton<IGrandPrixRepository, GrandPrixRepository>();
 
             services.AddSingleton<IQueryLogic, QueryLogic>();
+            services.AddSingleton<F1DbContext, F1DbContext>();
+            
 
         }
 
