@@ -24,6 +24,7 @@ namespace DDB2DA_HFT_2021221.Models
         public double Points { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Driver> Drivers { get; set; }
 
 

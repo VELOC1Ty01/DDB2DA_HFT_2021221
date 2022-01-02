@@ -1,4 +1,5 @@
 ﻿using ConsoleTools;
+using DDB2DA_HFT_2021221.Data;
 using DDB2DA_HFT_2021221.Logic;
 using DDB2DA_HFT_2021221.Models;
 using DDB2DA_HFT_2021221.Repository;
@@ -23,7 +24,23 @@ namespace DDB2DA_HFT_2021221.Client
 
             //Console.ReadLine();
 
+            //F1DbContext context = new F1DbContext();
 
+            //context.Team.Add(new Team {Name = "Kekw", Points = 0, });
+            //context.SaveChanges();
+            //Console.WriteLine("siker");
+
+            //context.Team.FirstOrDefault(x => x.Id == 25);
+            //Console.WriteLine();
+            //foreach (var item in context.Team)
+            //{
+            //    Console.WriteLine(item.Id + " " + item.Name);
+            //    foreach (var driver in item.Drivers)
+            //    {
+            //        Console.WriteLine("     " + driver.LastName);
+            //    }
+            //}
+            //Console.ReadLine();
 
 
             System.Threading.Thread.Sleep(3000);
@@ -38,7 +55,7 @@ namespace DDB2DA_HFT_2021221.Client
             startMenu
                 .Add("Query methods", () => queryMenu.Show())
                 .Add("CRUD methods", () => crudMenu.Show())
-                .Add("Exit", () => ConsoleMenu.Close());
+                .Add("Exit", ConsoleMenu.Close);
 
             queryMenu
                 .Add("Get Teams Who Were Present In All Races", () => GetQuery<Team>(rest, "GetAllOutTeams"))
@@ -121,7 +138,7 @@ namespace DDB2DA_HFT_2021221.Client
 
         static void TeamCRUDs(RestService rest)
         {
-            Console.WriteLine("Presenting CRUD methods on a new Team");
+            Console.WriteLine("Presenting CRUD methods on a new Team\n");
 
             Team team = new Team()
             {
@@ -130,22 +147,24 @@ namespace DDB2DA_HFT_2021221.Client
             };
 
             rest.Post<Team>(team, "team");
-            Console.WriteLine("New team registered.");
+            Console.WriteLine("New team registered.\n");
 
-            int teamId = 5;
+            int teamId = rest.Get<Team>("team").Max(x => x.Id);
             Team temp = rest.Get<Team>(teamId, "team");
             rest.Put<Team>(new Team()
             {
+                Id = temp.Id,
+                TeamGPs = temp.TeamGPs,
                 Points = temp.Points + 5,
                 Name = "BraumGP - updated"
             }, "team");
-            Console.WriteLine("Team is updated.");
+            Console.WriteLine("Team is updated.\n");
 
             rest.Delete(teamId, "team");
-            Console.WriteLine("Team deleted");
+            Console.WriteLine("Team deleted\n");
 
             Team haaas = rest.Get<Team>(10, "team");
-            Console.WriteLine($"Team with id 10: {haaas.Name}");
+            Console.WriteLine($"Team with id 10: {haaas.Name}\n");
 
             var teams = rest.Get<Team>("team");
             foreach (Team tm in teams)

@@ -39,6 +39,12 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
             logic.Create(team);
         }
 
+        [HttpPost]
+        public void CreateOne([FromBody] Team team)
+        {
+            logic.Create(team);
+        }
+
         [HttpGet("{id}")]
         public Team Get(int id)
         {
