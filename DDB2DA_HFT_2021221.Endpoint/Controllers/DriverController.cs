@@ -53,7 +53,6 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         public Driver Get(int id)
         {
             Driver driver = logic.ReadOne(id);
-            ;
             return driver;
         }
 

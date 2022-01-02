@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DDB2DA_HFT_2021221.Models
@@ -35,16 +36,12 @@ namespace DDB2DA_HFT_2021221.Models
         public double  Points { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Team Team { get; set; }
 
         [Required]
+        [ForeignKey(nameof(Team))]
         public int TeamId { get; set; }
-
-
-        public override string ToString()
-        {
-            return $"{Id} - {FirstName} {LastName} - {Team.Name} - Points: {Points}";
-        }
 
     }
 }

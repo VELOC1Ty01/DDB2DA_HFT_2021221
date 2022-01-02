@@ -60,7 +60,7 @@ namespace DDB2DA_HFT_2021221.Logic
 
         public Driver ReadOne(int driverId)
         {
-            ;
+           
             return repo.ReadOne(driverId);
         }
 

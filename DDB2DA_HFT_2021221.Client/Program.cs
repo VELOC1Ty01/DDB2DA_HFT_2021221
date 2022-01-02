@@ -1,5 +1,7 @@
 ﻿using ConsoleTools;
+using DDB2DA_HFT_2021221.Logic;
 using DDB2DA_HFT_2021221.Models;
+using DDB2DA_HFT_2021221.Repository;
 using System;
 using System.Linq;
 
@@ -20,6 +22,7 @@ namespace DDB2DA_HFT_2021221.Client
             //Console.WriteLine(context.Team.Where(x => x.Name == "ads").FirstOrDefault().Name);
 
             //Console.ReadLine();
+
 
 
 
@@ -111,7 +114,7 @@ namespace DDB2DA_HFT_2021221.Client
             var drivers = rest.Get<Driver>("driver");
             foreach (Driver drvr in drivers)
             {
-                Console.WriteLine(drvr.ToString());
+                Console.WriteLine(drvr.Id + " " + drvr.FirstName + " " + drvr.LastName);
             }
             Console.ReadLine();
         }
@@ -123,8 +126,7 @@ namespace DDB2DA_HFT_2021221.Client
             Team team = new Team()
             {
                 Name = "Porsche",
-                Points = 6,
-                Id = 12
+                Points = 6
             };
 
             rest.Post<Team>(team, "team");
@@ -134,8 +136,7 @@ namespace DDB2DA_HFT_2021221.Client
             Team temp = rest.Get<Team>(teamId, "team");
             rest.Put<Team>(new Team()
             {
-                Id = temp.Id,
-                Points = 8,
+                Points = temp.Points + 5,
                 Name = "BraumGP - updated"
             }, "team");
             Console.WriteLine("Team is updated.");
