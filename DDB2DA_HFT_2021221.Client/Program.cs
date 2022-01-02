@@ -1,5 +1,4 @@
 ﻿using ConsoleTools;
-using DDB2DA_HFT_2021221.Data;
 using DDB2DA_HFT_2021221.Models;
 using System;
 using System.Linq;
@@ -8,22 +7,24 @@ namespace DDB2DA_HFT_2021221.Client
 {
     class Program
     {
+
         static void Main(string[] args)
         {
 
-            //F1DbContext context = new F1DbContext();
+
 
             //context.Team.Add(new Team { Name = "ads", Points = 2 });
 
             //context.SaveChanges();
 
-            //Console.WriteLine( context.Team.Where(x => x.Name == "ads").FirstOrDefault().Name);
+            //Console.WriteLine(context.Team.Where(x => x.Name == "ads").FirstOrDefault().Name);
 
             //Console.ReadLine();
 
 
 
             System.Threading.Thread.Sleep(3000);
+
             RestService rest = new RestService("http://localhost:21304");
 
 
@@ -83,9 +84,9 @@ namespace DDB2DA_HFT_2021221.Client
 
             rest.Post<Driver>(driver, "driver");
             Console.WriteLine("New driver registered.");
-
+            
             int driverId = 47;
-            Driver temp = rest.Get<Driver>(driverId, "driver");
+            Driver temp = rest.Get<Driver>(driverId,"driver");
             rest.Put<Driver>(new Driver()
             {
                 FirstName = "Mick",
