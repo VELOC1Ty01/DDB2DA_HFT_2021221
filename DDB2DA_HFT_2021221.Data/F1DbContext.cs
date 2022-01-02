@@ -28,7 +28,7 @@ namespace DDB2DA_HFT_2021221.Data
             {
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True");
+                    .UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;MultipleActiveResultSets=True;");
             }
         }
 
@@ -49,7 +49,7 @@ namespace DDB2DA_HFT_2021221.Data
                 entity.HasOne(x => x.GP)
                 .WithMany(y => y.TeamGPs)
                 .HasForeignKey(tg => tg.GpId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             });
 
@@ -58,7 +58,7 @@ namespace DDB2DA_HFT_2021221.Data
                 entity.HasOne(x => x.Team)
                 .WithMany(y => y.TeamGPs)
                 .HasForeignKey(tg => tg.TeamID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.NoAction);
             });
 
 
