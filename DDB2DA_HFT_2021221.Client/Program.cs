@@ -10,36 +10,18 @@ namespace DDB2DA_HFT_2021221.Client
 
         static void Main(string[] args)
         {
+            try
+            {
+                Run();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
-
-
-            //context.Team.Add(new Team { Name = "ads", Points = 2 });
-
-            //context.SaveChanges();
-
-            //Console.WriteLine(context.Team.Where(x => x.Name == "ads").FirstOrDefault().Name);
-
-            //Console.ReadLine();
-
-            //F1DbContext context = new F1DbContext();
-
-            //context.Team.Add(new Team {Name = "Kekw", Points = 0, });
-            //context.SaveChanges();
-            //Console.WriteLine("siker");
-
-            //context.Team.FirstOrDefault(x => x.Id == 25);
-            //Console.WriteLine();
-            //foreach (var item in context.Team)
-            //{
-            //    Console.WriteLine(item.Id + " " + item.Name);
-            //    foreach (var driver in item.Drivers)
-            //    {
-            //        Console.WriteLine("     " + driver.LastName);
-            //    }
-            //}
-            //Console.ReadLine();
-
-
+        static void Run()
+        {
             System.Threading.Thread.Sleep(3000);
 
             RestService rest = new RestService("http://localhost:21304");
@@ -69,8 +51,6 @@ namespace DDB2DA_HFT_2021221.Client
                 .Add("Back", ConsoleMenu.Close); ;
 
             startMenu.Show();
-
-
         }
 
         static void GetQuery<T>(RestService rest, string query)
