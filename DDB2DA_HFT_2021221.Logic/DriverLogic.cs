@@ -34,10 +34,17 @@ namespace DDB2DA_HFT_2021221.Logic
 
         public void Create(Driver driver)
         {
-            if (ReadOne(driver.Id) != null)
+
+            if (driver.FirstName == null ||
+                driver.LastName == null ||
+                driver.ShortName == null)
             {
-                throw new InvalidOperationException
-                    ("Creating new item with Id: (" + driver.Id + ") is not possible: this item already exists.");
+                throw new NullReferenceException("There is required data missing!");
+            }
+
+            if(repo.ReadAll().Any(x => x.ShortName == driver.ShortName))
+            {
+                throw new InvalidOperationException("There is another driver with the same short name. Please choose another one!");
             }
 
             repo.Create(driver);

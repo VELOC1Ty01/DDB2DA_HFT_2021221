@@ -3,6 +3,7 @@ using DDB2DA_HFT_2021221.Models;
 using DDB2DA_HFT_2021221.Repository;
 using Moq;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,37 +42,100 @@ namespace DDB2DA_HFT_2021221.Test
 
 
         [Test]
-        public void TestTeamCreate()
+        public void TestCreateDriverWithAlreadyExistingId()
         {
+            mockedDriverRepository = new Mock<IDriverRepository>(MockBehavior.Loose);
+            DriverLogic logic = new DriverLogic(mockedDriverRepository.Object);
 
-            //Mock<IDriverRepository> driverRepository = new Mock<IDriverRepository>();
-            //Driver newDriver = new Driver { FirstName = "asd", LastName = "asdasd", Id = 69, Nationality = "TST", Points = 0, ShortName = "asd", TeamId = 2 };
+            Driver driver = new Driver
+            {
+                Id = 1,
+                FirstName = "asd",
+                LastName = "kek",
+                ShortName = "KEK",
+                Nationality = "LOL",
+                Points = 0,
+                TeamId = 2,
+            };
 
-            //driverRepository.Setup(x => x.Create(newDriver));
-            //DriverLogic logic = new DriverLogic(driverRepository.Object);
-            //Assert.That(logic.ReadOne(69).LastName == "asdasd");
+            mockedDriverRepository.Setup(x => x.Create(driver));
 
-            //mockedTeamRepository = new Mock<ITeamRepository>(MockBehavior.Loose);
-            //TeamLogic repo = new TeamLogic(mockedTeamRepository.Object);
-
-            //var expectedResult =new Team { Id = 1, Name = "ASD", Points = 5 };
-
-            //mockedTeamRepository.Setup(x => x.Create(new Team { Name = "ASD", Points = 5  }));
-
-            //Assert.That(repo.ReadOne(1), Is.EqualTo(expectedResult));
+            Assert.That(() => logic.Create(driver), Throws.Nothing);
         }
 
-        Mock<ITeamRepository> mockedTeamRepository;
+        [Test]
+        public void TestCreateWithoutShortName()
+        {
+            mockedDriverRepository = new Mock<IDriverRepository>(MockBehavior.Loose);
+            DriverLogic logic = new DriverLogic(mockedDriverRepository.Object);
+            Driver driver = new Driver
+            {
+                Id = 11,
+                FirstName = "asd",
+                LastName = "kek",
+                Nationality = "LOL",
+                Points = 0,
+                TeamId = 2,
+            };
+
+            Assert.Throws(typeof(NullReferenceException),() => logic.Create(driver));
+        }
 
         [Test]
-        public void TestTeamReadAll()
+        public void TestCreateWithExistingShortName()
         {
-            mockedTeamRepository = new Mock<ITeamRepository>(MockBehavior.Loose);
-            TeamLogic repo = new TeamLogic(mockedTeamRepository.Object);
+            mockedDriverRepository = new Mock<IDriverRepository>(MockBehavior.Loose);
+            DriverLogic logic = new DriverLogic(mockedDriverRepository.Object);
 
-            IQueryable<Team> teams = repo.ReadAll();
-            ;
-            Assert.Pass();
+            List<Driver> drivers = new List<Driver>
+            {
+                new Driver
+                {
+                    Id = 1, FirstName = "asd", LastName = "kek",ShortName = "123", Nationality = "LOL", Points = 0, TeamId = 1
+                },
+                new Driver
+                {
+                    Id = 2, FirstName = "asd", LastName = "kek",ShortName = "456", Nationality = "LOL", Points = 0, TeamId = 2
+                },
+                new Driver
+                {
+                    Id = 3, FirstName = "asd", LastName = "kek",ShortName = "789", Nationality = "LOL", Points = 0, TeamId = 3
+                }
+            };
+
+            mockedDriverRepository.Setup(x => x.ReadAll()).Returns(drivers.AsQueryable());
+
+            Driver sameShortName = new Driver { Id = 4, FirstName = "asd", LastName = "kek", ShortName = "123", Nationality = "LOL", Points = 0, TeamId = 2 };
+
+            Assert.Throws(typeof(InvalidOperationException), () => logic.Create(sameShortName));
+
+        }
+
+        [Test]
+        public void TestDeleteWithNonexistingId()
+        {
+            mockedDriverRepository = new Mock<IDriverRepository>(MockBehavior.Loose);
+            DriverLogic logic = new DriverLogic(mockedDriverRepository.Object);
+
+            List<Driver> drivers = new List<Driver>
+            {
+                new Driver
+                {
+                    Id = 1, FirstName = "asd", LastName = "kek",ShortName = "123", Nationality = "LOL", Points = 0, TeamId = 2,
+                },
+                new Driver
+                {
+                    Id = 2, FirstName = "asd", LastName = "kek",ShortName = "456", Nationality = "LOL", Points = 0, TeamId = 2,
+                },
+                new Driver
+                {
+                    Id = 3, FirstName = "asd", LastName = "kek",ShortName = "789", Nationality = "LOL", Points = 0, TeamId = 2,
+                },
+            };
+
+            mockedDriverRepository.Setup(x => x.ReadAll()).Returns(drivers.AsQueryable());
+
+            Assert.Throws(typeof(NullReferenceException), () => logic.Delete(5));
         }
     }
 }
