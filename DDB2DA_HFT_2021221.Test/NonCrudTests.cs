@@ -144,8 +144,71 @@ namespace DDB2DA_HFT_2021221.Test
 
             List<Team> expected = new List<Team> { mercedes, redbull, mclaren, ferrari, alpine, alphatauri, astonmartin };
 
-            Assert.That(result.Select(x => x.Id), Is.EquivalentTo(expected.Select(x => x.Id)));
+            Assert.That(result.Select(x => x.Name), Is.EquivalentTo(expected.Select(x => x.Name)));
 
         }
+
+        [Test]
+        public void TestGetTeamsWhoSkippedGP()
+        {
+
+            F1DbContext context = new F1DbContext();
+
+            teamRepo = new Mock<ITeamRepository>();
+            driverRepo = new Mock<IDriverRepository>();
+            gpRepo = new Mock<IGrandPrixRepository>();
+
+            teamRepo.Setup(x => x.ReadAll()).Returns(context.Team);
+            gpRepo.Setup(x => x.ReadAll()).Returns(context.GrandPrix);
+
+            QueryLogic logic = new QueryLogic(driverRepo.Object, teamRepo.Object, gpRepo.Object);
+
+            IEnumerable<Team> result = logic.GetTeamsWhoSkippedGP();
+
+            Team williams = new Team() { Id = 8, Name = "Williams Mercedes", Points = 23 };
+            Team alfaromeo = new Team() { Id = 9, Name = "Alfa Romeo Racing Ferrari", Points = 7 };
+            Team haas = new Team() { Id = 10, Name = "Haas Ferrari", Points = 0 };
+
+            List<Team> expected = new List<Team> { williams, alfaromeo, haas };
+
+            Assert.That(result.Select(x => x.Name), Is.EquivalentTo(expected.Select(x => x.Name)));
+
+        }
+
+        [Test]
+        public void TestGetDriverRaces()
+        {
+            F1DbContext context = new F1DbContext();
+
+            teamRepo = new Mock<ITeamRepository>();
+            driverRepo = new Mock<IDriverRepository>();
+            gpRepo = new Mock<IGrandPrixRepository>();
+
+            teamRepo.Setup(x => x.ReadAll()).Returns(context.Team);
+            gpRepo.Setup(x => x.ReadAll()).Returns(context.GrandPrix);
+            driverRepo.Setup(x => x.ReadAll()).Returns(context.Drivers);
+            driverRepo.Setup(x => x.ReadOne(It.IsAny<int>())).Returns(context.Drivers.Find(47));
+
+
+            QueryLogic logic = new QueryLogic(driverRepo.Object, teamRepo.Object, gpRepo.Object);
+
+           
+            GrandPrix emil = new GrandPrix() { Id = 2, Name = "Emilia Romagna Grand Prix", Date = new DateTime(2021, 04, 18), Track = "Autodromo Enzo e Dino Ferrari" };                      
+            GrandPrix mon = new GrandPrix() { Id = 5, Name = "Monaco GP", Date = new DateTime(2021, 05, 23), Track = "Circuit de Monaco" };          
+            GrandPrix fre = new GrandPrix() { Id = 7, Name = "French GP", Date = new DateTime(2021, 06, 20), Track = "Circuit Paul Ricard" };
+            GrandPrix ste = new GrandPrix() { Id = 8, Name = "Steiermark GP", Date = new DateTime(2021, 06, 27), Track = "Red Bull Ring" };
+            GrandPrix aus = new GrandPrix() { Id = 9, Name = "Austrian GP", Date = new DateTime(2021, 07, 04), Track = "Red Bull Ring" };
+            GrandPrix brt = new GrandPrix() { Id = 10, Name = "British GP", Date = new DateTime(2021, 07, 18), Track = "Silverstone Circuit" };
+            GrandPrix hun = new GrandPrix() { Id = 11, Name = "Hungarian GP", Date = new DateTime(2021, 08, 1), Track = "Hungaroring" };
+
+            List<GrandPrix> expected = new List<GrandPrix> { emil, mon, fre, ste, aus, brt, hun };
+
+            IEnumerable<GrandPrix> result = logic.GetDriverRaces(47);
+
+            Assert.That(result.Select(x => x.Name), Is.EquivalentTo(expected.Select(x => x.Name)));
+
+
+        }
+
     }
 }
