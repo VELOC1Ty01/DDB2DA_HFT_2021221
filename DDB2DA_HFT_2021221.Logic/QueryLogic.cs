@@ -27,7 +27,7 @@ namespace DDB2DA_HFT_2021221.Logic
             return teamRepository.ReadAll()
                 .Where(x => x.TeamGPs.Count() == grandPrixRepository.ReadAll().Count())
                 .Select(x => 
-                 new Team { Id = x.Id, Name = x.Name}
+                 new Team { Id = x.Id, Name = x.Name, Points = x.Points}
                  );
         }
 
