@@ -46,20 +46,25 @@ namespace DDB2DA_HFT_2021221.Logic
             return teamRepository.ReadOne(teamId).Drivers;
         }
 
-        public IEnumerable<Driver> GetPointsFromDrivers(int teamId)
+
+        public IEnumerable<Team> GetPointsFromDrivers()
         {
-            return teamRepository.ReadOne(teamId)
-                .Drivers.Select(x => new Driver 
-                {   Id = x.Id,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                    Points = x.Points });
+            return teamRepository.ReadAll().Select(x => new Team
+            {
+                Name = x.Name,
+                Points = x.Drivers.Sum(y => y.Points),
+                Id = x.Id,
+            });
         }
 
         public IEnumerable<Team> GetTeamsWhoSkippedGP()
         {
 
-            return teamRepository.ReadAll().Where(x => x.TeamGPs.Count() != grandPrixRepository.ReadAll().Count());
+            return teamRepository.ReadAll()
+                .Where(x => x.TeamGPs.Count() != grandPrixRepository.ReadAll().Count());
         }
+
+
+
     }
 }

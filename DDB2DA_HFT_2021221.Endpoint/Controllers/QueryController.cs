@@ -22,9 +22,9 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Driver> GetPointsFromDrivers()
+        public IEnumerable<Team> GetPointsFromDrivers()
         {
-            return logic.GetPointsFromDrivers(2);
+            return logic.GetPointsFromDrivers();
         }
 
         [HttpGet]       

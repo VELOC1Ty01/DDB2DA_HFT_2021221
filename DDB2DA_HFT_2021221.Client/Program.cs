@@ -58,8 +58,8 @@ namespace DDB2DA_HFT_2021221.Client
                 .Add("Get Teams Who Were Present In All Races", () => GetQuery<Team>(rest, "GetAllOutTeams"))
                 .Add("GetTeamsWhoSkippedGP", () => GetQuery<Team>(rest, "GetTeamsWhoSkippedGP"))
                 .Add("GetPointsFromDrivers", () => GetQuery<Driver>(rest, "GetPointsFromDrivers"))
-                .Add("GetDriversFromTeam", () => GetQuery<Driver>(rest, "GetDriversFromTeam"))
-                .Add("GetDriverRaces", () => GetQuery<GrandPrix>(rest, "GetDriverRaces"))
+                .Add("GetDriversFromTeam (Mercedes)", () => GetQuery<Driver>(rest, "GetDriversFromTeam"))
+                .Add("Get Races where Driver33 was Present", () => GetQuery<GrandPrix>(rest, "GetDriverRaces"))
                 .Add("Back", ConsoleMenu.Close);
 
             crudMenu
