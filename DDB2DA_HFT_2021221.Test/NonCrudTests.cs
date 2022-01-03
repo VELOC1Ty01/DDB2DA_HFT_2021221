@@ -117,9 +117,7 @@ namespace DDB2DA_HFT_2021221.Test
             Assert.That(result.Select(x => x.Id),Is.EquivalentTo(expectedResult.Select(x => x.Id)));
 
         }
-
-        [Test]
-        public void TestGetAllOutTeams()
+        private QueryLogic TestGetAllOutTeamsMock()
         {
             F1DbContext context = new F1DbContext();
 
@@ -131,6 +129,15 @@ namespace DDB2DA_HFT_2021221.Test
             gpRepo.Setup(x => x.ReadAll()).Returns(context.GrandPrix);
 
             QueryLogic logic = new QueryLogic(driverRepo.Object, teamRepo.Object, gpRepo.Object);
+
+            return logic;
+        }
+
+
+        [Test]
+        public void TestGetAllOutTeams()
+        {
+            QueryLogic logic = TestGetAllOutTeamsMock();
 
             IEnumerable<Team> result = logic.GetAllOutTeams();
 
@@ -148,10 +155,8 @@ namespace DDB2DA_HFT_2021221.Test
 
         }
 
-        [Test]
-        public void TestGetTeamsWhoSkippedGP()
+        private QueryLogic TestGetTeamsWhoSkippedGPMock()
         {
-
             F1DbContext context = new F1DbContext();
 
             teamRepo = new Mock<ITeamRepository>();
@@ -162,6 +167,14 @@ namespace DDB2DA_HFT_2021221.Test
             gpRepo.Setup(x => x.ReadAll()).Returns(context.GrandPrix);
 
             QueryLogic logic = new QueryLogic(driverRepo.Object, teamRepo.Object, gpRepo.Object);
+
+            return logic;
+        }
+
+        [Test]
+        public void TestGetTeamsWhoSkippedGP()
+        {
+            QueryLogic logic = TestGetTeamsWhoSkippedGPMock();
 
             IEnumerable<Team> result = logic.GetTeamsWhoSkippedGP();
 
@@ -175,8 +188,7 @@ namespace DDB2DA_HFT_2021221.Test
 
         }
 
-        [Test]
-        public void TestGetDriverRaces()
+        private QueryLogic TestGetDriverRacesMock()
         {
             F1DbContext context = new F1DbContext();
 
@@ -191,6 +203,14 @@ namespace DDB2DA_HFT_2021221.Test
 
 
             QueryLogic logic = new QueryLogic(driverRepo.Object, teamRepo.Object, gpRepo.Object);
+
+            return logic;
+        }
+
+        [Test]
+        public void TestGetDriverRaces()
+        {
+            QueryLogic logic = TestGetDriverRacesMock();
 
            
             GrandPrix emil = new GrandPrix() { Id = 2, Name = "Emilia Romagna Grand Prix", Date = new DateTime(2021, 04, 18), Track = "Autodromo Enzo e Dino Ferrari" };                      
