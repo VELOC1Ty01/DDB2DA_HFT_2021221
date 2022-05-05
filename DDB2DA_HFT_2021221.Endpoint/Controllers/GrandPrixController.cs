@@ -17,7 +17,7 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         private IGrandPrixLogic logic;
         IHubContext<SignalRHub> hub;
 
-        public GrandPrixController(IGrandPrixLogic logic)
+        public GrandPrixController(IGrandPrixLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
             this.hub = hub;

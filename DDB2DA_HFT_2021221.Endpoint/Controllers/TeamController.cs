@@ -17,7 +17,7 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         private ITeamLogic logic;
         IHubContext<SignalRHub> hub;
 
-        public TeamController(ITeamLogic logic)
+        public TeamController(ITeamLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
             this.hub = hub;
