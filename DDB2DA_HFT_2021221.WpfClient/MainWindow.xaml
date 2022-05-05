@@ -1,0 +1,19 @@
+﻿<Window x:Class="DDB2DA_HFT_2021221.WpfClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DDB2DA_HFT_2021221.WpfClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="300">
+    <StackPanel Margin="10">
+        <StackPanel.DataContext>
+            <local:MenuViewModel/>
+        </StackPanel.DataContext>
+        <Button Height="50" Margin="10" Command="{Binding DriversCommand}" Content="Drivers"/>
+        <Button Height="50" Margin="10" Command="{Binding TeamsCommand}" Content="Teams"/>
+        <Button Height="50" Margin="10" Command="{Binding GpCommand}" Content="GrandPrixes"/>
+        <Button Height="50" Margin="10" Command="{Binding QuerryCommand}" Content="Queries"/>
+        <Button Height="50" Margin="10" Command="{Binding ExitCommand}" Content="Exit"/>
+    </StackPanel>
+</Window>

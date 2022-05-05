@@ -1,0 +1,50 @@
+﻿<Window x:Class="DDB2DA_HFT_2021221.WpfClient.TeamEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DDB2DA_HFT_2021221.WpfClient"
+        mc:Ignorable="d"
+        Title="TeamEditorWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:TeamEditorViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" ItemsSource="{Binding Teams}"
+                 SelectedItem="{Binding SelectedTeam}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1" Margin="10">
+
+            <Label Content="Id" Margin="5, 5, 5, 0"/>
+            <TextBox Margin="5, 0, 5, 5" Height="30" 
+                         Text="{Binding TeamIdField, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Name" Margin="5, 5, 5, 0"/>
+            <TextBox Margin="5, 0, 5, 5" Height="30" 
+                         Text="{Binding NameField, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Points" Margin="5, 5, 5, 0"/>
+            <TextBox Margin="5, 0, 5, 5" Height="30" 
+                         Text="{Binding PointsField, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Margin="10" Height="30" Content="Add new Team"
+                        Command="{Binding AddCommand}"/>
+
+            <Button Margin="10" Height="30" Content="Update selected Team"
+                        Command="{Binding UpdateCommand}"/>
+
+            <Button Margin="10" Height="30" Content="Remove selected Team"
+                        Command="{Binding RemoveCommand}"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Driver UI</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Driver List</h1>
+
+    <div id="formdiv">
+        <label>First Name</label>
+        <input type="text" id="firstName" />
+        <label>Last Name</label>
+        <input type="text" id="lastName" />
+        <label>ShortName</label>
+        <input type="text" maxlength="3" id="shortName" />
+        <label for="nationality">Nationality:</label>
+        <select name="nationality" id="nationality">
+            <option value="AUS">Australian</option>
+            <option value="GBR">British</option>
+            <option value="GER">German</option>
+            <option value="CAN">Canadian</option>
+            <option value="FRA">French</option>
+            <option value="MEX">Mexican</option>
+            <option value="ESP">Spanish</option>
+            <option value="MON">Monogasc</option>
+            <option value="RAF">RAF</option>
+            <option value="JAP">Japanese</option>
+            <option value="NED">Netherlander</option>
+            <option value="FIN">Finnish</option>
+            <option value="POL">Polish</option>
+            <option value="ITA">Italian</option>
+            <option value="HUN">Hungarian</option>
+        </select>
+
+        <label for="team">Team:</label>
+        <select name="team" id="team">
+            <option value="1">Mercedes</option>
+            <option value="2">Red Bull Racing</option>
+            <option value="3">Mclaren Mercedes</option>
+            <option value="4">Ferrari</option>
+            <option value="5">Alpine Renault</option>
+            <option value="6">Alphatauri</option>
+            <option value="7">Astin Martin</option>
+            <option value="8">Williams</option>
+            <option value="9">Alfa Romeo</option>
+            <option value="10">Haas</option>
+        </select>
+
+        <button type="button" onclick="create()">Add Driver</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>First Name</label>
+        <input type="text" id="firstNameUp" />
+        <label>Last Name</label>
+        <input type="text" id="lastNameUp" />
+        <label>ShrotName</label>
+        <input type="text" maxlength="3" id="shortNameUp" />
+        <label for="nationality">Nationality:</label>
+        <select name="nationality" id="nationalityUp">
+            <option value="AUS">Australian</option>
+            <option value="GBR">British</option>
+            <option value="GER">German</option>
+            <option value="CAN">Canadian</option>
+            <option value="FRA">French</option>
+            <option value="MEX">Mexican</option>
+            <option value="ESP">Spanish</option>
+            <option value="MON">Monogasc</option>
+            <option value="RAF">RAF</option>
+            <option value="JAP">Japanese</option>
+            <option value="NED">Netherlander</option>
+            <option value="FIN">Finnish</option>
+            <option value="POL">Polish</option>
+            <option value="ITA">Italian</option>
+            <option value="HUN">Hungarian</option>
+        </select>
+
+        <label for="team">Team:</label>
+        <select name="team" id="teamUp">
+            <option value="1">Mercedes</option>
+            <option value="2">Red Bull Racing</option>
+            <option value="3">Mclaren Mercedes</option>
+            <option value="4">Ferrari</option>
+            <option value="5">Alpine Renault</option>
+            <option value="6">Alphatauri</option>
+            <option value="7">Astin Martin</option>
+            <option value="8">Williams</option>
+            <option value="9">Alfa Romeo</option>
+            <option value="10">Haas</option>
+        </select>
+
+        <button type="button" onclick="update()">Update Driver</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

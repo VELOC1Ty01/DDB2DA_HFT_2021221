@@ -1,0 +1,50 @@
+﻿table{
+    width: 100%;
+}
+
+table, th, td{
+    border: 1px solid black;
+}
+
+table{
+    border-collapse: collapse;
+}
+th,td{
+    padding:5px;
+}
+th{
+    background-color: red
+}
+
+#formdiv{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#formdiv label, button, input{
+    margin: 5px;
+    padding: 5px;
+}
+
+table button{
+    padding: 2px;
+}
+
+#formdiv label{
+    font-weight: bolder;
+}
+
+#updateformdiv {
+    display: none;
+    width: 500px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#updateformdiv label, button, input {
+        margin: 5px;
+        padding: 5px;
+}
+

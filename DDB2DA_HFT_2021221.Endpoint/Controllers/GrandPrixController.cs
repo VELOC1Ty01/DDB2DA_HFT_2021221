@@ -1,6 +1,8 @@
-﻿using DDB2DA_HFT_2021221.Logic;
+﻿using DDB2DA_HFT_2021221.Endpoint.Services;
+using DDB2DA_HFT_2021221.Logic;
 using DDB2DA_HFT_2021221.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,12 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
     public class GrandPrixController : ControllerBase
     {
         private IGrandPrixLogic logic;
+        IHubContext<SignalRHub> hub;
 
         public GrandPrixController(IGrandPrixLogic logic)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -34,13 +38,16 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         [HttpDelete("{gpId}")]
         public void Delete([FromRoute] int gpId)
         {
+            var gpToDelete = this.logic.ReadOne(gpId);
             logic.Delete(gpId);
+            this.hub.Clients.All.SendAsync("ActorDeleted", gpToDelete);
         }
 
         [HttpPost("{grandprix}")]
         public void Post([FromBody] GrandPrix grandPrix)
         {
             logic.Create(grandPrix);
+            this.hub.Clients.All.SendAsync("GPCreated", grandPrix);
         }
 
         [HttpGet("{id}")]
@@ -53,6 +60,7 @@ namespace DDB2DA_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] GrandPrix grandPrix)
         {
             logic.Update(grandPrix);
+            this.hub.Clients.All.SendAsync("GPUpdated", grandPrix);
         }
     }
 }
