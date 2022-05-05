@@ -86,7 +86,7 @@ namespace DDB2DA_HFT_2021221.WpfClient
 
         public TeamEditorViewModel()
         {
-            Teams = new RestCollection<Team>("http://localhost:21304/", "team", "hub");
+            Teams = new RestCollection<Team>("http://localhost:21304/", "Team", "hub");
 
             AddCommand = new RelayCommand(
                 () => Teams.Add(new Team

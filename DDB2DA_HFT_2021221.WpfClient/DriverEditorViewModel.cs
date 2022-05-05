@@ -139,11 +139,9 @@ namespace DDB2DA_HFT_2021221.WpfClient
                     Drivers.Update(SelectedDriver);
                 },
                 () => SelectedDriver != null
-                    && DriverIdField != null
                     && FirstNameField != null
                     && LastNameField != null
                     && ShortNameField != null
-                    && TeamIdField != null
                     && NationField != null);
 
             RemoveCommand = new RelayCommand(
