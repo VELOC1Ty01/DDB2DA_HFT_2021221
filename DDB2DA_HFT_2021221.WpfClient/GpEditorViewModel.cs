@@ -76,7 +76,7 @@ namespace DDB2DA_HFT_2021221.WpfClient
 
         public GpEditorViewModel()
         {
-            GrandPrixes = new RestCollection<GrandPrix>("http://localhost:21304/", "GrandPrix", "hub");
+            GrandPrixes = new RestCollection<GrandPrix>("http://localhost:21304/", "GrandPrix");
 
             AddCommand = new RelayCommand(
                 () => GrandPrixes.Add(new GrandPrix
