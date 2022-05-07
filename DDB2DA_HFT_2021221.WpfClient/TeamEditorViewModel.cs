@@ -27,7 +27,6 @@ namespace DDB2DA_HFT_2021221.WpfClient
                 NameField = value?.Name;
                 PointsField = value != null ? value.Points : 0;
                 TeamIdField = value != null ? value.Id : 0;
-                TeamGPsField = value?.TeamGPs;
 
                 //ShortNameField = value != null? value.ShortName : String.Empty;
 
@@ -97,8 +96,6 @@ namespace DDB2DA_HFT_2021221.WpfClient
 
                 () => NameField != null && NameField.Trim().Length != 0
                 );
-                        
-                        
 
             UpdateCommand = new RelayCommand(
                 () =>
