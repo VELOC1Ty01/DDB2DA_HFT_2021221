@@ -75,7 +75,7 @@ function display() {
             `<Button type="button" onclick="remove(${t.id})">Delete</Button>` +
             `<Button type="button" onclick="showupdate(${t.id})">Update</Button>` +
             "</td></tr>";
-        console.log(t.lastName);
+        //console.log(t.lastName);
     });
 }
 
@@ -105,7 +105,7 @@ function create() {
             {
                 firstName: firstName, lastName: lastName,
                 shortName: shortName, nationality: nationality,
-                teamId:teamId, id: driverId
+                teamId:teamId
             })
     })
         .then(response => response)
