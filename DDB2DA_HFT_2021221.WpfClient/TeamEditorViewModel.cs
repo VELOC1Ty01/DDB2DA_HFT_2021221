@@ -100,11 +100,8 @@ namespace DDB2DA_HFT_2021221.WpfClient
             UpdateCommand = new RelayCommand(
                 () =>
                 {
-                    SelectedTeam.Id = TeamIdField;
                     SelectedTeam.Name = NameField;
                     SelectedTeam.Points = PointsField;
-                    SelectedTeam.TeamGPs = SelectedTeam.TeamGPs;
-                    SelectedTeam.Drivers = SelectedTeam.Drivers;
                     Teams.Update(SelectedTeam);
                 },
                 () => SelectedTeam != null

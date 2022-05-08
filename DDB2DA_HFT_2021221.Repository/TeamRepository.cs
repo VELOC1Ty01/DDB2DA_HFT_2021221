@@ -62,6 +62,7 @@ namespace DDB2DA_HFT_2021221.Repository
             old.TeamGPs = team.TeamGPs;
             old.Name = team.Name;
             old.Points = team.Points;
+            context.SaveChanges();
         }
     }
 }
