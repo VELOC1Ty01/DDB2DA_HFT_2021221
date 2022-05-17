@@ -1,0 +1,24 @@
+﻿body {
+    margin: auto;
+    text-align: center;
+    font-size: large;
+
+    background-color:aqua
+}
+
+table {
+    margin: auto;
+    margin-top: 30px;
+}
+
+th {
+    background-color: deepskyblue;
+
+}
+td {
+    border-block: dotted;
+
+    text-align: left;
+
+    font-size: larger;
+}
