@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
     <h1>Driver List</h1>
 
     <div id="formdiv">
@@ -48,7 +50,9 @@
             <option value="10">Haas</option>
         </select>
 
-        <button type="button" onclick="create()">Add Driver</button>
+        <button type="button" onclick='javascript:create()'>Add Driver</button>
+        <button type="button" onclick='javascript:query()'>Query</button>
+
     </div>
 
     <div id="updateformdiv">
@@ -106,7 +110,6 @@
         </tbody>
     </table>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script src="script.js"></script>
+
 </body>
 </html>
