@@ -7,7 +7,6 @@ setupSignalR();
 
 getdata();
 
-
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
         .withUrl("http://localhost:21304/hub")
@@ -158,4 +157,11 @@ function remove(id) {
             getdata();
         })
         .catch((error) => { console.error('Error:', error); });
+}
+
+
+function query() {
+
+    window.open('http://localhost:25895/query.html');
+
 }
