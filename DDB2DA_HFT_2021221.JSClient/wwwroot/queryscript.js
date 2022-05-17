@@ -41,6 +41,7 @@ function gpdisplay() {
     document.getElementById(`resultarea`).innerHTML = "";
     items.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
-            "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" + t.track + "</td><td>" + t.date.toString().split("T")[0] + "</td></tr>";
+            "<tr><td>" + t.id + "</td><td>" + t.name + "</td><td>" +
+            t.track + "</td><td>" + t.date.toString().split("T")[0] + "</td></tr>";
     });
 }
