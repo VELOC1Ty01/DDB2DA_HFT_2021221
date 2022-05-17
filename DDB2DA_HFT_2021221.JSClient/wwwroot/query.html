@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Query UI</title>
+</head>
+<body>
+    <script src="queryscript.js"></script>
+    <h1>Query</h1>
+
+    <label for="querytype">Select Query:</label>
+    <select name="querytype" id="querytype">
+        <option value="GetPointsFromDrivers">Get Points From Drivers</option>
+        <option value="GetDriversFromTeam">Get drivers who race for Mercedes</option>
+        <option value="GetAllOutTeams">Teams who participated in every race</option>
+        <option value="GetTeamsWhoSkippedGP">Teams who skipped GradnPrixes</option>
+        <option value="GetDriverRaces">All races driver 33 participitated in</option>
+    </select>
+    <button type="button" onclick='getdata()'>Get Query</button>
+
+    <table>
+        <thead>
+            <tr id="resulttopics">
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+</body>
+</html>
